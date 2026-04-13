@@ -432,7 +432,7 @@ export default function App() {
         transition:"all 0.35s ease",
       }}>
         <div style={{ maxWidth:1100, margin:"0 auto", padding:"14px 32px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-          <a href="#" style={{ fontSize:28, fontWeight:800, letterSpacing:"-0.06em", lineHeight:1 }}>L</a>
+          <a href="/" onClick={(e) => { e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); history.replaceState(null,'','/'); }} style={{ fontSize:28, fontWeight:800, letterSpacing:"-0.06em", lineHeight:1, cursor:"pointer" }}>L</a>
           <div className="desk" style={{ display:"flex", alignItems:"center", gap:28 }}>
             {["About","Portfolio","Thesis"].map(l => (
               <a key={l} href={`#${l.toLowerCase()}`} className="uline" style={{ fontSize:13, fontWeight:500, letterSpacing:"0.01em" }}>{l}</a>
