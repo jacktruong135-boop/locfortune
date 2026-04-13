@@ -77,6 +77,24 @@ const COMPANIES = {
       "Targeting 1% reduction in global CO₂ emissions by 2050",
     ],
   },
+  "number": {
+    name: "Number",
+    sector: "Technology",
+    url: "https://number.com.au",
+    headline: "AI voice calls and search optimisation for Australian businesses.",
+    overview: "Number provides AI-powered voice calls, AI search optimisation (GEO), and custom AI solutions for Australian businesses. Their platform helps companies get found by AI search engines like ChatGPT, book more meetings through AI-driven outbound calls, and build custom AI solutions tailored to their needs.",
+    stats: [
+      { value: "AI", label: "Voice calls" },
+      { value: "GEO", label: "Search optimisation" },
+      { value: "AU", label: "Built for Australia" },
+    ],
+    points: [
+      "AI-powered voice calls that book meetings and handle customer enquiries",
+      "AI search optimisation (GEO) helping brands get discovered by ChatGPT and other AI engines",
+      "Custom AI solutions tailored to Australian businesses",
+      "Helping businesses automate outreach and scale conversations",
+    ],
+  },
 };
 
 const PORTFOLIO = [
@@ -84,6 +102,7 @@ const PORTFOLIO = [
   { name: "Magnium", slug: "magnium", desc: "Commercialising world-leading research to manufacture net-zero carbon magnesium, a critical mineral, targeting 1% global CO₂ reduction by 2050.", stat: "1%" },
   { name: "Norg AI", slug: "norg-ai", desc: "Giving customers the most human-like AI sales companion experience, powering personalised recommendations with deep business understanding.", stat: "AI" },
   { name: "TMA Solutions", slug: "tma-solutions", desc: "One of Vietnam's premier software outsourcing companies, delivering agile development and exceptional IT solutions through highly skilled engineers.", stat: "500+" },
+  { name: "Number", slug: "number", desc: "AI-powered voice calls, AI search optimisation, and custom AI solutions for Australian businesses. Get found by ChatGPT. Book more meetings.", stat: "GEO" },
 ];
 
 const TESTIMONIALS = [
@@ -474,7 +493,7 @@ export default function App() {
         <R><h2 style={{ fontSize:"clamp(26px, 4.5vw, 42px)", fontWeight:700, lineHeight:1.15, letterSpacing:"-0.03em", maxWidth:620, marginBottom:52 }}>We invest in cutting-edge technology and sustainable renewables infrastructure.</h2></R>
         <R d={0.08}>
           <div className="stats-g" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:1, background:border, borderRadius:16, overflow:"hidden" }}>
-            {[{ n:4, s:"", l:"Portfolio companies" },{ n:13, s:"+", l:"Years of R&D backed" },{ n:90, s:"K", l:"Tonnes facility capacity" },{ n:2, s:"", l:"Investment verticals" }].map((s,i) => (
+            {[{ n:5, s:"", l:"Portfolio companies" },{ n:13, s:"+", l:"Years of R&D backed" },{ n:90, s:"K", l:"Tonnes facility capacity" },{ n:2, s:"", l:"Investment verticals" }].map((s,i) => (
               <div key={i} style={{ padding:"32px 24px", background:white }}>
                 <div style={{ fontSize:44, fontWeight:800, letterSpacing:"-0.04em", lineHeight:1 }}><Counter end={s.n} suffix={s.s} /></div>
                 <p style={{ fontSize:13, color:muted, marginTop:4 }}>{s.l}</p>
@@ -495,7 +514,7 @@ export default function App() {
               <p style={{ fontSize:15, lineHeight:1.7, color:muted }}>Focused on startups and established companies in fintech, cybersecurity, AI, and blockchain.</p>
             </div></R>
             <R d={0.14}><div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-              {PORTFOLIO.filter(c => c.slug === "norg-ai" || c.slug === "tma-solutions").map((c,i) => (
+              {PORTFOLIO.filter(c => c.slug === "norg-ai" || c.slug === "tma-solutions" || c.slug === "number").map((c,i) => (
                 <div key={i} className="lift" onClick={() => go(c.slug)} style={{ padding:"24px", borderRadius:14, border:`1px solid ${border}`, cursor:"pointer" }}>
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
                     <span style={{ fontSize:16, fontWeight:700, letterSpacing:"-0.01em" }}>{c.name}</span>
