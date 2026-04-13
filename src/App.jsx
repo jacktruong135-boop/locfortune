@@ -582,7 +582,7 @@ export default function App() {
         <div style={{ maxWidth:1100, margin:"0 auto", padding:"88px 32px", textAlign:"center" }}>
           <R><h2 className="cta-h serif" style={{ fontSize:"clamp(32px, 5.5vw, 56px)", fontWeight:400, fontStyle:"italic", letterSpacing:"-0.02em", lineHeight:1.08, marginBottom:16 }}>Let's build something<br />extraordinary.</h2></R>
           <R d={0.08}><p style={{ fontSize:16, color:"#A1A1AA", maxWidth:400, margin:"0 auto 32px", lineHeight:1.6 }}>Whether you're a founder or an investor seeking impact — we'd love to hear from you.</p></R>
-          <R d={0.14}><a href="mailto:hello@locfortune.com" style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"14px 32px", borderRadius:100, fontSize:14, fontWeight:600, background:white, color:black }}>Get in touch <ArrowRight size={15} /></a></R>
+          <R d={0.14}><a href="mailto:jack@locfortune.com" style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"14px 32px", borderRadius:100, fontSize:14, fontWeight:600, background:white, color:black }}>Get in touch <ArrowRight size={15} /></a></R>
         </div>
       </section>
 
