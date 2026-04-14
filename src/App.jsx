@@ -38,12 +38,12 @@ const COMPANIES = {
     stats: [{ value: "AI", label: "Voice calls" }, { value: "GEO", label: "Search optimisation" }, { value: "AU", label: "Built for Australia" }],
     points: ["AI-powered voice calls that book meetings and handle customer enquiries", "AI search optimisation (GEO) helping brands get discovered by ChatGPT and other AI engines", "Custom AI solutions tailored to Australian businesses", "Helping businesses automate outreach and scale conversations"],
   },
-  "electrogenics": {
-    name: "Electrogenics", sector: "Technology", url: "https://moskin-dosimetry.com",
-    headline: "Next-generation radiation dosimetry.",
-    overview: "Electrogenics Laboratories is transforming radiation dosimetry with MOSkin — a fast, low-cost, single-use dosimeter that delivers real-time, accurate radiation measurement at the point of care. The technology replaces outdated, expensive systems that have remained largely unchanged for over 30 years, making precise dosimetry viable for mainstream clinical use in radiation oncology and interventional radiology.",
-    stats: [{ value: "20+", label: "Global institutions tested" }, { value: "80%", label: "Global patent coverage" }, { value: "$1.1M", label: "AusIndustry grant" }],
-    points: ["MOSkin provides real-time radiation measurement in 3 minutes vs 1–3 hours for legacy systems", "Single-use, disposable sensors — no disinfection, no specialist staff required", "Fully patented with 80% global market coverage, tested in 20+ international institutions", "Largest competitor exited the market due to FDA recall, positioning MOSkin as the clear leader", "Awarded $1.1M Industry Growth Program grant from AusIndustry — second federal grant received", "Scalable razor/razorblade business model: consumable dosimeters, capital equipment hubs, and software licenses"],
+  "moskin": {
+    name: "MOSkin", sector: "Technology", url: "https://moskin-dosimetry.com",
+    headline: "Real-time skin-dose verification within minutes.",
+    overview: "MOSkin is transforming radiation dosimetry with a fast, low-cost, single-use dosimeter system that delivers real-time skin-dose verification at the console — no spreadsheets, no sterilisation, no cables. The system replaces outdated, expensive dosimetry tools that have remained largely unchanged for over 30 years, making precise dose verification viable for routine clinical use in radiation oncology and interventional radiology. Developed by Electrogenics Laboratories and backed by ISO 13485 certification and peer-reviewed evidence.",
+    stats: [{ value: "20+", label: "Global institutions tested" }, { value: "80%", label: "Global patent coverage" }, { value: "ISO", label: "13485 certified" }],
+    points: ["Real-time skin-dose verification in 3–5 minutes vs hours for legacy systems", "Single-use, disposable sensors — no disinfection, no cables, no specialist staff required", "Fully patented with 80% global market coverage, tested in 20+ international institutions", "Good Design Award winner — patient-first design philosophy", "ISO 13485 certified with peer-reviewed clinical evidence", "Scalable razor/razorblade business model: consumable dosimeters, hub hardware, and software licenses"],
   },
 };
 
@@ -53,7 +53,7 @@ const PORTFOLIO = [
   { name: "Norg AI", slug: "norg-ai", desc: "Helping brands dominate AI search results, reaching billions of shoppers who ask AI before they buy.", stat: "AI" },
   { name: "TMA Solutions", slug: "tma-solutions", desc: "One of Vietnam's premier software outsourcing companies, delivering agile development and exceptional IT solutions.", stat: "500+" },
   { name: "Number", slug: "number", desc: "AI-powered voice calls, AI search optimisation, and custom AI solutions for Australian businesses.", stat: "GEO" },
-  { name: "Electrogenics", slug: "electrogenics", desc: "Next-generation radiation dosimetry — fast, low-cost, real-time radiation measurement replacing outdated systems in cancer treatment.", stat: "MedTech" },
+  { name: "MOSkin", slug: "moskin", desc: "Real-time skin-dose verification — fast, low-cost dosimetry replacing outdated systems in radiation oncology.", stat: "MedTech" },
 ];
 
 const TESTIMONIALS = [
@@ -585,7 +585,7 @@ export default function App(){
         <div className="vert-g" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:56,alignItems:"start"}}>
           <R d={0.06}><div><p className="mono" style={{fontSize:11,color:muted,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:14}}>Technology</p><h3 style={{fontSize:"clamp(24px,3.5vw,36px)",fontWeight:700,letterSpacing:"-0.025em",lineHeight:1.15,marginBottom:16}}>Disruptive technologies shaping the future.</h3><p style={{fontSize:15,lineHeight:1.7,color:muted}}>Focused on startups and established companies in fintech, cybersecurity, AI, and blockchain.</p></div></R>
           <R d={0.14}><div style={{display:"flex",flexDirection:"column",gap:10}}>
-            {PORTFOLIO.filter(c=>c.slug==="norg-ai"||c.slug==="tma-solutions"||c.slug==="number"||c.slug==="electrogenics").map((c,i)=>(
+            {PORTFOLIO.filter(c=>c.slug==="norg-ai"||c.slug==="tma-solutions"||c.slug==="number"||c.slug==="moskin").map((c,i)=>(
               <div key={i} className="lift" onClick={()=>go(c.slug)} style={{padding:"24px",borderRadius:14,border:`1px solid ${border}`,cursor:"pointer"}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}><span style={{fontSize:16,fontWeight:700,letterSpacing:"-0.01em"}}>{c.name}</span><ArrowUpRight size={15} color={dim}/></div><p style={{fontSize:13,color:muted,lineHeight:1.55}}>{c.desc}</p></div>
             ))}
           </div></R>
