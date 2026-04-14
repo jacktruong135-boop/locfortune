@@ -39,7 +39,7 @@ const COMPANIES = {
     points: ["AI-powered voice calls that book meetings and handle customer enquiries", "AI search optimisation (GEO) helping brands get discovered by ChatGPT and other AI engines", "Custom AI solutions tailored to Australian businesses", "Helping businesses automate outreach and scale conversations"],
   },
   "electrogenics": {
-    name: "Electrogenics", sector: "Technology", url: "https://electrogenicslabs.com",
+    name: "Electrogenics", sector: "Technology", url: "https://moskin-dosimetry.com",
     headline: "Next-generation radiation dosimetry.",
     overview: "Electrogenics Laboratories is transforming radiation dosimetry with MOSkin — a fast, low-cost, single-use dosimeter that delivers real-time, accurate radiation measurement at the point of care. The technology replaces outdated, expensive systems that have remained largely unchanged for over 30 years, making precise dosimetry viable for mainstream clinical use in radiation oncology and interventional radiology.",
     stats: [{ value: "20+", label: "Global institutions tested" }, { value: "80%", label: "Global patent coverage" }, { value: "$1.1M", label: "AusIndustry grant" }],
