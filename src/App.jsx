@@ -38,6 +38,13 @@ const COMPANIES = {
     stats: [{ value: "AI", label: "Voice calls" }, { value: "GEO", label: "Search optimisation" }, { value: "AU", label: "Built for Australia" }],
     points: ["AI-powered voice calls that book meetings and handle customer enquiries", "AI search optimisation (GEO) helping brands get discovered by ChatGPT and other AI engines", "Custom AI solutions tailored to Australian businesses", "Helping businesses automate outreach and scale conversations"],
   },
+  "electrogenics": {
+    name: "Electrogenics", sector: "Technology", url: "https://electrogenicslabs.com",
+    headline: "Next-generation radiation dosimetry.",
+    overview: "Electrogenics Laboratories is transforming radiation dosimetry with MOSkin — a fast, low-cost, single-use dosimeter that delivers real-time, accurate radiation measurement at the point of care. The technology replaces outdated, expensive systems that have remained largely unchanged for over 30 years, making precise dosimetry viable for mainstream clinical use in radiation oncology and interventional radiology.",
+    stats: [{ value: "20+", label: "Global institutions tested" }, { value: "80%", label: "Global patent coverage" }, { value: "$1.1M", label: "AusIndustry grant" }],
+    points: ["MOSkin provides real-time radiation measurement in 3 minutes vs 1–3 hours for legacy systems", "Single-use, disposable sensors — no disinfection, no specialist staff required", "Fully patented with 80% global market coverage, tested in 20+ international institutions", "Largest competitor exited the market due to FDA recall, positioning MOSkin as the clear leader", "Awarded $1.1M Industry Growth Program grant from AusIndustry — second federal grant received", "Scalable razor/razorblade business model: consumable dosimeters, capital equipment hubs, and software licenses"],
+  },
 };
 
 const PORTFOLIO = [
@@ -46,6 +53,7 @@ const PORTFOLIO = [
   { name: "Norg AI", slug: "norg-ai", desc: "Helping brands dominate AI search results, reaching billions of shoppers who ask AI before they buy.", stat: "AI" },
   { name: "TMA Solutions", slug: "tma-solutions", desc: "One of Vietnam's premier software outsourcing companies, delivering agile development and exceptional IT solutions.", stat: "500+" },
   { name: "Number", slug: "number", desc: "AI-powered voice calls, AI search optimisation, and custom AI solutions for Australian businesses.", stat: "GEO" },
+  { name: "Electrogenics", slug: "electrogenics", desc: "Next-generation radiation dosimetry — fast, low-cost, real-time radiation measurement replacing outdated systems in cancer treatment.", stat: "MedTech" },
 ];
 
 const TESTIMONIALS = [
@@ -566,7 +574,7 @@ export default function App(){
       <section id="about" style={{maxWidth:1100,margin:"0 auto",padding:"88px 32px"}}>
         <R><h2 style={{fontSize:"clamp(26px,4.5vw,42px)",fontWeight:700,lineHeight:1.15,letterSpacing:"-0.03em",maxWidth:620,marginBottom:52}}>We invest in cutting-edge technology and sustainable renewables infrastructure.</h2></R>
         <R d={0.08}><div className="stats-g" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:1,background:border,borderRadius:16,overflow:"hidden"}}>
-          {[{n:5,s:"",l:"Portfolio companies"},{n:13,s:"+",l:"Years of R&D backed"},{n:90,s:"K",l:"Tonnes facility capacity"},{n:2,s:"",l:"Investment verticals"}].map((s,i)=>(
+          {[{n:6,s:"",l:"Portfolio companies"},{n:13,s:"+",l:"Years of R&D backed"},{n:90,s:"K",l:"Tonnes facility capacity"},{n:2,s:"",l:"Investment verticals"}].map((s,i)=>(
             <div key={i} style={{padding:"32px 24px",background:white}}><div style={{fontSize:44,fontWeight:800,letterSpacing:"-0.04em",lineHeight:1}}><Counter end={s.n} suffix={s.s}/></div><p style={{fontSize:13,color:muted,marginTop:4}}>{s.l}</p></div>
           ))}
         </div></R>
@@ -577,7 +585,7 @@ export default function App(){
         <div className="vert-g" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:56,alignItems:"start"}}>
           <R d={0.06}><div><p className="mono" style={{fontSize:11,color:muted,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:14}}>Technology</p><h3 style={{fontSize:"clamp(24px,3.5vw,36px)",fontWeight:700,letterSpacing:"-0.025em",lineHeight:1.15,marginBottom:16}}>Disruptive technologies shaping the future.</h3><p style={{fontSize:15,lineHeight:1.7,color:muted}}>Focused on startups and established companies in fintech, cybersecurity, AI, and blockchain.</p></div></R>
           <R d={0.14}><div style={{display:"flex",flexDirection:"column",gap:10}}>
-            {PORTFOLIO.filter(c=>c.slug==="norg-ai"||c.slug==="tma-solutions"||c.slug==="number").map((c,i)=>(
+            {PORTFOLIO.filter(c=>c.slug==="norg-ai"||c.slug==="tma-solutions"||c.slug==="number"||c.slug==="electrogenics").map((c,i)=>(
               <div key={i} className="lift" onClick={()=>go(c.slug)} style={{padding:"24px",borderRadius:14,border:`1px solid ${border}`,cursor:"pointer"}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}><span style={{fontSize:16,fontWeight:700,letterSpacing:"-0.01em"}}>{c.name}</span><ArrowUpRight size={15} color={dim}/></div><p style={{fontSize:13,color:muted,lineHeight:1.55}}>{c.desc}</p></div>
             ))}
           </div></R>
