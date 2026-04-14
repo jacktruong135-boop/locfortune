@@ -505,9 +505,26 @@ export default function App(){
   const [scrolled,setScrolled]=useState(false);
   const [menuOpen,setMenuOpen]=useState(false);
   const [testIdx,setTestIdx]=useState(0);
+  const [showIntro,setShowIntro]=useState(true);
+  const [introPhase,setIntroPhase]=useState(0); // 0=letters dropping, 1=hold, 2=exit
 
   useEffect(()=>{const f=()=>setScrolled(window.scrollY>50);window.addEventListener("scroll",f);return()=>window.removeEventListener("scroll",f)},[]);
   useEffect(()=>{const id=setInterval(()=>setTestIdx(p=>(p+1)%TESTIMONIALS.length),5500);return()=>clearInterval(id)},[]);
+
+  // Intro timeline
+  useEffect(()=>{
+    if(!showIntro)return;
+    // Phase 0: letters drop in (handled by CSS animation-delay)
+    // Phase 1: hold after all letters landed
+    const t1=setTimeout(()=>setIntroPhase(1),1800);
+    // Phase 2: exit — slide up and fade
+    const t2=setTimeout(()=>setIntroPhase(2),2600);
+    // Remove intro from DOM
+    const t3=setTimeout(()=>{setShowIntro(false);document.body.style.overflow=""},3400);
+    // Lock scroll during intro
+    document.body.style.overflow="hidden";
+    return()=>{clearTimeout(t1);clearTimeout(t2);clearTimeout(t3);document.body.style.overflow=""};
+  },[showIntro]);
 
   const go=(p)=>{setPage(p);window.scrollTo(0,0)};
   const goHome=()=>go("home");
@@ -520,8 +537,57 @@ export default function App(){
   if(page.startsWith("article:"))return <ArticlePage slug={page.replace("article:","")} onBack={()=>go("insights")}/>;
   if(COMPANIES[page])return <CompanyPage slug={page} onBack={goHome}/>;
 
+  const introLetters = "LOC FORTUNE".split("");
+
   return (
-    <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh",overflowX:"hidden"}}>
+    <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh",overflowX:"hidden",position:"relative"}}>
+
+      {/* ═══ INTRO ANIMATION ═══ */}
+      {showIntro && (
+        <div style={{
+          position:"fixed",inset:0,zIndex:9999,
+          background:white,
+          display:"flex",alignItems:"center",justifyContent:"center",
+          opacity:introPhase===2?0:1,
+          transform:introPhase===2?"translateY(-100vh)":"translateY(0)",
+          transition:introPhase===2?"opacity 0.8s cubic-bezier(0.76,0,0.24,1), transform 0.8s cubic-bezier(0.76,0,0.24,1)":"none",
+        }}>
+          <style>{`
+            @keyframes letterDrop {
+              0% { opacity:0; transform:translateY(-80px) rotate(-8deg); }
+              60% { opacity:1; transform:translateY(8px) rotate(1deg); }
+              80% { transform:translateY(-3px) rotate(-0.5deg); }
+              100% { opacity:1; transform:translateY(0) rotate(0deg); }
+            }
+            .intro-letter {
+              display:inline-block;
+              opacity:0;
+              animation:letterDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
+              font-family:'Sora',sans-serif;
+              font-weight:800;
+              letter-spacing:-0.04em;
+              color:${black};
+            }
+          `}</style>
+          <div style={{textAlign:"center"}}>
+            <div style={{fontSize:"clamp(48px,12vw,120px)",lineHeight:1,marginBottom:16}}>
+              {introLetters.map((letter,i) => (
+                <span
+                  key={i}
+                  className="intro-letter"
+                  style={{
+                    animationDelay:`${0.08*i}s`,
+                    marginRight: letter===" " ? "0.25em" : "0.01em",
+                  }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <style>{GLOBAL_STYLES}{`
         @keyframes mql{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
         .marquee{animation:mql 28s linear infinite}
