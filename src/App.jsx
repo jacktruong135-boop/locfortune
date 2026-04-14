@@ -97,94 +97,6 @@ function Parallax({children,speed=0.3,style={}}){
   return <div ref={ref} style={{...style,transform:`translateY(${offset}px)`,willChange:"transform"}}>{children}</div>;
 }
 
-// ─── Sticky Horizontal Scroll ───
-function StickyPortfolio({ companies, onCardClick }) {
-  const outerRef = useRef(null);
-  const [translateX, setTranslateX] = useState(0);
-
-  // Hardcoded dimensions for reliability
-  const CARD_W = 360;
-  const GAP = 14;
-  const PAD = 32;
-  const totalTrackWidth = companies.length * CARD_W + (companies.length - 1) * GAP + PAD * 2;
-  const [viewW, setViewW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1000);
-  const scrollDistance = Math.max(0, totalTrackWidth - viewW);
-
-  useEffect(() => {
-    const onResize = () => setViewW(window.innerWidth);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    if (scrollDistance <= 0) return;
-    const handle = () => {
-      if (!outerRef.current) return;
-      const top = outerRef.current.getBoundingClientRect().top;
-      const travel = outerRef.current.offsetHeight - window.innerHeight;
-      if (travel <= 0) return;
-      const progress = Math.max(0, Math.min(1, -top / travel));
-      setTranslateX(-progress * scrollDistance);
-    };
-    window.addEventListener("scroll", handle, { passive: true });
-    handle();
-    return () => window.removeEventListener("scroll", handle);
-  }, [scrollDistance]);
-
-  return (
-    <div ref={outerRef} style={{ height: window.innerHeight + scrollDistance, position: "relative" }}>
-      <div style={{
-        position: "sticky", top: 0, height: "100dvh",
-        display: "flex", flexDirection: "column",
-        overflow: "hidden",
-        borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}`,
-      }}>
-        {/* Header */}
-        <div style={{ padding: "80px 32px 20px", display: "flex", justifyContent: "space-between", alignItems: "flex-end", maxWidth: 1100, margin: "0 auto", width: "100%", flexShrink: 0 }}>
-          <div>
-            <p className="mono" style={{ fontSize: 12, letterSpacing: "0.15em", textTransform: "uppercase", color: dim, marginBottom: 8 }}>Portfolio</p>
-            <h3 style={{ fontSize: "clamp(22px,3.5vw,30px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.15 }}>Companies we've backed.</h3>
-          </div>
-          <p style={{ fontSize: 12, color: dim }}>Scroll ↓</p>
-        </div>
-
-        {/* Cards */}
-        <div style={{ flex: 1, display: "flex", alignItems: "center", overflow: "hidden", padding: `0 ${PAD}px` }}>
-          <div style={{ display: "flex", gap: GAP, transform: `translateX(${translateX}px)`, willChange: "transform" }}>
-            {companies.map((c, i) => (
-              <div key={i} className="lift" onClick={() => onCardClick && onCardClick(c.slug)} style={{
-                flexShrink: 0, width: CARD_W, padding: 28, borderRadius: 16,
-                border: `1px solid ${border}`, background: white, cursor: "pointer",
-                display: "flex", flexDirection: "column", justifyContent: "space-between",
-                minHeight: 240,
-              }}>
-                <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-                    <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.01em" }}>{c.name}</span>
-                    <ArrowUpRight size={16} color={dim} />
-                  </div>
-                  <p style={{ fontSize: 14, color: muted, lineHeight: 1.6 }}>{c.desc}</p>
-                </div>
-                <div style={{ borderTop: `1px solid ${border}`, paddingTop: 14, marginTop: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span className="mono" style={{ fontSize: 11, color: dim, letterSpacing: "0.06em", textTransform: "uppercase" }}>{c.sector}</span>
-                  <span className="mono" style={{ fontSize: 11, color: black, fontWeight: 700 }}>{c.stat}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Progress */}
-        <div style={{ padding: "16px 32px 28px", maxWidth: 1100, margin: "0 auto", width: "100%", flexShrink: 0 }}>
-          <div style={{ height: 2, background: border, borderRadius: 1, overflow: "hidden" }}>
-            <div style={{ height: "100%", background: black, borderRadius: 1, width: `${scrollDistance > 0 ? Math.min(100, Math.abs(translateX / scrollDistance) * 100) : 0}%` }} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const black="#0A0A0A",white="#FFFFFF",bg="#FAFAFA",muted="#71717A",dim="#A1A1AA",border="rgba(0,0,0,0.08)",borderHover="rgba(0,0,0,0.16)";
 
 const GLOBAL_STYLES=`
@@ -205,11 +117,6 @@ const GLOBAL_STYLES=`
   .input-field{width:100%;padding:14px 18px;border-radius:12px;border:1px solid ${border};background:${white};font-size:14px;font-family:'Sora',sans-serif;outline:none;transition:border-color 0.2s}
   .input-field:focus{border-color:${black}}
   .input-field::placeholder{color:${dim}}
-  .h-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab}
-  .h-scroll::-webkit-scrollbar{display:none}
-  .h-scroll:active{cursor:grabbing}
-  .p-card{flex-shrink:0;width:340px;padding:28px;border-radius:16px;border:1px solid ${border};background:${white};cursor:pointer;transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px}
-  .p-card:hover{transform:translateY(-4px);border-color:${borderHover};box-shadow:0 8px 32px rgba(0,0,0,0.06)}
   .section-num{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:${dim}}
   @media(max-width:800px){
     .desk{display:none!important}
@@ -221,7 +128,7 @@ const GLOBAL_STYLES=`
     .cta-h{font-size:32px!important}
     .articles-g{grid-template-columns:1fr!important}
     .about-g{grid-template-columns:1fr!important}
-    .p-card{width:280px;min-height:200px}
+    .portfolio-grid{grid-template-columns:1fr!important}
   }
 `;
 
@@ -395,10 +302,30 @@ export default function App(){
         </div></R>
       </section>
 
-      {/* Sticky horizontal scroll portfolio */}
-      <div id="portfolio">
-        <StickyPortfolio companies={PORTFOLIO} onCardClick={(slug) => go(slug)} />
-      </div>
+      {/* Portfolio */}
+      <section id="portfolio" style={{borderTop:`1px solid ${border}`,maxWidth:1100,margin:"0 auto",padding:"88px 32px"}}>
+        <R><div style={{display:"flex",alignItems:"center",gap:16,marginBottom:44}}><span className="section-num">Portfolio</span><div style={{flex:1,height:1,background:border}}/></div></R>
+        <R d={0.06}><h3 style={{fontSize:"clamp(24px,4vw,36px)",fontWeight:700,letterSpacing:"-0.025em",lineHeight:1.15,marginBottom:40}}>Companies we've backed.</h3></R>
+        <div className="portfolio-grid" style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:16}}>
+          {PORTFOLIO.map((c,i)=>(
+            <R key={i} d={0.06*i}>
+              <div className="lift" onClick={()=>go(c.slug)} style={{padding:28,borderRadius:16,border:`1px solid ${border}`,cursor:"pointer",display:"flex",flexDirection:"column",justifyContent:"space-between",height:"100%"}}>
+                <div>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+                    <span style={{fontSize:18,fontWeight:700,letterSpacing:"-0.01em"}}>{c.name}</span>
+                    <ArrowUpRight size={16} color={dim}/>
+                  </div>
+                  <p style={{fontSize:14,color:muted,lineHeight:1.6}}>{c.desc}</p>
+                </div>
+                <div style={{borderTop:`1px solid ${border}`,paddingTop:14,marginTop:16,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                  <span className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.06em",textTransform:"uppercase"}}>{c.sector}</span>
+                  <span className="mono" style={{fontSize:11,color:black,fontWeight:700}}>{c.stat}</span>
+                </div>
+              </div>
+            </R>
+          ))}
+        </div>
+      </section>
 
       {/* About + Stats with text reveal */}
       <section id="about-section" style={{maxWidth:1100,margin:"0 auto",padding:"100px 32px"}}>
