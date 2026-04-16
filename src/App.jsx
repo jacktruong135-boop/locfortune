@@ -101,23 +101,24 @@ const black="#0A0A0A",white="#FFFFFF",bg="#FAFAFA",muted="#71717A",dim="#A1A1AA"
 
 const GLOBAL_STYLES=`
   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
+  body{font-weight:200;letter-spacing:-0.005em}
   ::selection{background:${black};color:${white}}
   a{color:inherit;text-decoration:none}
-  .mono{font-family:'Space Mono',monospace}
+  .mono{font-family:'Sora',sans-serif;font-weight:500}
   .serif{font-family:'Instrument Serif',Georgia,serif}
   .uline{position:relative}
   .uline::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:${black};transition:width 0.3s ease}
   .uline:hover::after{width:100%}
   .lift{transition:transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease}
   .lift:hover{transform:translateY(-4px);border-color:${borderHover}!important;box-shadow:0 8px 32px rgba(0,0,0,0.06)}
-  .input-field{width:100%;padding:14px 18px;border-radius:12px;border:1px solid ${border};background:${white};font-size:14px;font-family:'Sora',sans-serif;outline:none;transition:border-color 0.2s}
+  .input-field{width:100%;padding:14px 18px;border-radius:12px;border:1px solid ${border};background:${white};font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s}
   .input-field:focus{border-color:${black}}
   .input-field::placeholder{color:${dim}}
-  .section-num{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:${dim}}
+  .section-num{font-family:'Sora',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:${dim}}
   @media(max-width:800px){
     .desk{display:none!important}
     .mob-show{display:flex!important}
@@ -133,15 +134,15 @@ const GLOBAL_STYLES=`
 `;
 
 // ─── Shared components ───
-function SubNav({onBack,rightElement}){return <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:"rgba(255,255,255,0.92)",backdropFilter:"blur(16px)",borderBottom:`1px solid ${border}`}}><div style={{maxWidth:1100,margin:"0 auto",padding:"14px 32px",display:"flex",alignItems:"center",justifyContent:"space-between"}}><button onClick={onBack} style={{display:"flex",alignItems:"center",gap:8,background:"none",border:"none",cursor:"pointer",fontSize:13,fontWeight:600,fontFamily:"'Sora',sans-serif"}}><ArrowLeft size={16}/> Back</button><a href="#" onClick={e=>{e.preventDefault();onBack()}} style={{fontSize:28,fontWeight:800,letterSpacing:"-0.06em",lineHeight:1}}>L</a>{rightElement||<div style={{width:100}}/>}</div></nav>}
-function SubFooter({onBack}){return <footer style={{borderTop:`1px solid ${border}`,marginTop:32}}><div style={{maxWidth:1100,margin:"0 auto",padding:"24px 32px",display:"flex",justifyContent:"space-between",alignItems:"center"}}><button onClick={onBack} style={{display:"flex",alignItems:"center",gap:8,background:"none",border:"none",cursor:"pointer",fontSize:13,fontWeight:600,fontFamily:"'Sora',sans-serif",color:muted}}><ArrowLeft size={14}/> Back to Loc Fortune</button><p style={{fontSize:11,color:dim}}>© 2026 Loc Fortune Capital Pty Ltd</p></div></footer>}
+function SubNav({onBack,rightElement}){return <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:"rgba(255,255,255,0.92)",backdropFilter:"blur(16px)",borderBottom:`1px solid ${border}`}}><div style={{maxWidth:1100,margin:"0 auto",padding:"14px 32px",display:"flex",alignItems:"center",justifyContent:"space-between"}}><button onClick={onBack} style={{display:"flex",alignItems:"center",gap:8,background:"none",border:"none",cursor:"pointer",fontSize:13,fontWeight:600,fontFamily:"'Inter',sans-serif"}}><ArrowLeft size={16}/> Back</button><a href="#" onClick={e=>{e.preventDefault();onBack()}} style={{fontSize:28,fontWeight:800,letterSpacing:"-0.06em",lineHeight:1}}>L</a>{rightElement||<div style={{width:100}}/>}</div></nav>}
+function SubFooter({onBack}){return <footer style={{borderTop:`1px solid ${border}`,marginTop:32}}><div style={{maxWidth:1100,margin:"0 auto",padding:"24px 32px",display:"flex",justifyContent:"space-between",alignItems:"center"}}><button onClick={onBack} style={{display:"flex",alignItems:"center",gap:8,background:"none",border:"none",cursor:"pointer",fontSize:13,fontWeight:600,fontFamily:"'Inter',sans-serif",color:muted}}><ArrowLeft size={14}/> Back to Loc Fortune</button><p style={{fontSize:11,color:dim}}>© 2026 Loc Fortune Capital Pty Ltd</p></div></footer>}
 
 // ═══ ABOUT PAGE ═══
 function AboutPage({onBack,goPitch}){
   useEffect(()=>{window.scrollTo(0,0)},[]);
-  return <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh"}}>
+  return <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh"}}>
     <style>{GLOBAL_STYLES}</style>
-    <SubNav onBack={onBack} rightElement={<button onClick={goPitch} style={{padding:"9px 22px",borderRadius:100,fontSize:13,fontWeight:600,background:black,color:white,display:"inline-flex",alignItems:"center",gap:6,border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif"}}>Pitch to us <ArrowRight size={13}/></button>}/>
+    <SubNav onBack={onBack} rightElement={<button onClick={goPitch} style={{padding:"9px 22px",borderRadius:100,fontSize:13,fontWeight:600,background:black,color:white,display:"inline-flex",alignItems:"center",gap:6,border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Pitch to us <ArrowRight size={13}/></button>}/>
     <section style={{maxWidth:1100,margin:"0 auto",padding:"120px 32px 60px"}}>
       <R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>About</p></R>
       <R d={0.06}><h1 className="serif" style={{fontSize:"clamp(36px,7vw,72px)",fontWeight:400,lineHeight:1,letterSpacing:"-0.02em",marginBottom:12}}>We back founders</h1></R>
@@ -171,7 +172,7 @@ function AboutPage({onBack,goPitch}){
     <section style={{maxWidth:1100,margin:"0 auto",padding:"64px 32px",textAlign:"center"}}>
       <R><h3 style={{fontSize:24,fontWeight:700,letterSpacing:"-0.02em",marginBottom:8}}>Have something worth building?</h3></R>
       <R d={0.06}><p style={{fontSize:15,color:muted,marginBottom:24}}>We'd love to hear what you're working on.</p></R>
-      <R d={0.1}><button onClick={goPitch} style={{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:100,fontSize:14,fontWeight:600,background:black,color:white,border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif"}}>Pitch to us <ArrowRight size={15}/></button></R>
+      <R d={0.1}><button onClick={goPitch} style={{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:100,fontSize:14,fontWeight:600,background:black,color:white,border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Pitch to us <ArrowRight size={15}/></button></R>
     </section>
     <SubFooter onBack={onBack}/>
   </div>;
@@ -182,7 +183,7 @@ function PitchPage({onBack}){
   const[form,setForm]=useState({name:"",email:"",company:"",stage:"",sector:"",description:""});const[submitted,setSubmitted]=useState(false);
   useEffect(()=>{window.scrollTo(0,0)},[]);
   const handleSubmit=()=>{const s=encodeURIComponent(`Pitch: ${form.company||"New Company"}`);const b=encodeURIComponent(`Founder: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nStage: ${form.stage}\nSector: ${form.sector}\n\n${form.description}`);window.location.href=`mailto:jack@locfortune.com?subject=${s}&body=${b}`;setSubmitted(true)};
-  return <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/>
+  return <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/>
     <section style={{maxWidth:640,margin:"0 auto",padding:"120px 32px 80px"}}>
       <R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>Get in touch</p></R>
       <R d={0.06}><h1 style={{fontSize:"clamp(28px,5vw,44px)",fontWeight:800,lineHeight:1.1,letterSpacing:"-0.03em",marginBottom:12}}>Pitch to us</h1></R>
@@ -193,7 +194,7 @@ function PitchPage({onBack}){
         <div><label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:6}}>Company name</label><input className="input-field" placeholder="Your company" value={form.company} onChange={e=>setForm({...form,company:e.target.value})}/></div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}><div><label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:6}}>Stage</label><select className="input-field" value={form.stage} onChange={e=>setForm({...form,stage:e.target.value})} style={{cursor:"pointer",appearance:"auto"}}><option value="">Select stage</option><option>Pre-seed</option><option>Seed</option><option>Series A</option><option>Series B+</option><option>Other</option></select></div><div><label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:6}}>Sector</label><select className="input-field" value={form.sector} onChange={e=>setForm({...form,sector:e.target.value})} style={{cursor:"pointer",appearance:"auto"}}><option value="">Select sector</option><option>AI / Machine Learning</option><option>Fintech</option><option>Cybersecurity</option><option>Deep Tech</option><option>MedTech</option><option>SaaS</option><option>Other</option></select></div></div>
         <div><label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:6}}>Tell us about your company</label><textarea className="input-field" placeholder="What problem are you solving? What's your traction? What are you raising?" rows={6} value={form.description} onChange={e=>setForm({...form,description:e.target.value})} style={{resize:"vertical",minHeight:120}}/></div>
-        <button onClick={handleSubmit} style={{padding:"14px 32px",borderRadius:100,fontSize:14,fontWeight:600,background:black,color:white,border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8,width:"100%",marginTop:8}}>Submit pitch <Send size={15}/></button>
+        <button onClick={handleSubmit} style={{padding:"14px 32px",borderRadius:100,fontSize:14,fontWeight:600,background:black,color:white,border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8,width:"100%",marginTop:8}}>Submit pitch <Send size={15}/></button>
         <p style={{fontSize:12,color:dim,textAlign:"center"}}>Opens your email app with details pre-filled.</p>
       </div></R>)}
     </section><SubFooter onBack={onBack}/></div>;
@@ -201,7 +202,7 @@ function PitchPage({onBack}){
 
 // ═══ COMPANY PAGE ═══
 function CompanyPage({slug,onBack}){const c=COMPANIES[slug];if(!c)return null;useEffect(()=>{window.scrollTo(0,0)},[]);
-  return <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style>
+  return <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style>
     <SubNav onBack={onBack} rightElement={<a href={c.url} target="_blank" rel="noopener noreferrer" style={{padding:"9px 22px",borderRadius:100,fontSize:13,fontWeight:600,background:black,color:white,display:"inline-flex",alignItems:"center",gap:6}}>Visit website <ExternalLink size={13}/></a>}/>
     <section style={{maxWidth:1100,margin:"0 auto",padding:"120px 32px 60px"}}><R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>{c.sector}</p></R><R d={0.06}><h1 style={{fontSize:"clamp(40px,7vw,72px)",fontWeight:800,lineHeight:0.98,letterSpacing:"-0.04em",marginBottom:16}}>{c.name}</h1></R><R d={0.12}><p className="serif" style={{fontSize:"clamp(20px,3vw,30px)",fontWeight:400,fontStyle:"italic",lineHeight:1.3,color:muted,maxWidth:600,marginBottom:40}}>{c.headline}</p></R><R d={0.18}><a href={c.url} target="_blank" rel="noopener noreferrer" style={{display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:100,fontSize:14,fontWeight:600,background:black,color:white}}>Visit {c.name} <ExternalLink size={14}/></a></R></section>
     <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px"}}><div style={{height:1,background:border}}/></div>
@@ -215,7 +216,7 @@ function CompanyPage({slug,onBack}){const c=COMPANIES[slug];if(!c)return null;us
 
 // ═══ ARTICLE PAGE ═══
 function ArticlePage({slug,onBack}){const a=ARTICLES.find(x=>x.slug===slug);if(!a)return null;useEffect(()=>{window.scrollTo(0,0)},[]);
-  return <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/>
+  return <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/>
     <section style={{maxWidth:720,margin:"0 auto",padding:"120px 32px 60px"}}><R><div style={{display:"flex",alignItems:"center",gap:12,marginBottom:20}}><span style={{fontSize:12,fontWeight:600,padding:"4px 12px",borderRadius:100,border:`1px solid ${border}`}}>{a.category}</span><span style={{fontSize:12,color:dim}}>{a.date} · {a.readTime}</span></div></R><R d={0.06}><h1 style={{fontSize:"clamp(28px,5vw,44px)",fontWeight:800,lineHeight:1.12,letterSpacing:"-0.03em",marginBottom:20}}>{a.title}</h1></R><R d={0.12}><p style={{fontSize:17,lineHeight:1.7,color:muted,marginBottom:48}}>{a.summary}</p></R><R d={0.16}><div style={{height:1,background:border,marginBottom:48}}/></R>
     {a.content.map((b,i)=>(<R key={i} d={0.04*i}>{b.type==="h"?<h2 style={{fontSize:20,fontWeight:700,letterSpacing:"-0.02em",marginTop:36,marginBottom:12}}>{b.text}</h2>:<p style={{fontSize:15,lineHeight:1.8,color:muted,marginBottom:16}}>{b.text}</p>}</R>))}</section>
     <div style={{maxWidth:720,margin:"0 auto",padding:"0 32px"}}><div style={{height:1,background:border}}/></div>
@@ -225,20 +226,20 @@ function ArticlePage({slug,onBack}){const a=ARTICLES.find(x=>x.slug===slug);if(!
 
 // ═══ INSIGHTS PAGE ═══
 function InsightsPage({onBack,goArticle}){const[filter,setFilter]=useState("All");useEffect(()=>{window.scrollTo(0,0)},[]);const cats=["All",...Array.from(new Set(ARTICLES.map(a=>a.category)))];const filtered=filter==="All"?ARTICLES:ARTICLES.filter(a=>a.category===filter);const featured=ARTICLES[ARTICLES.length-1];
-  return <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/>
+  return <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/>
     <section style={{maxWidth:1100,margin:"0 auto",padding:"120px 32px 40px"}}><R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>Insights</p></R><R d={0.06}><h1 style={{fontSize:"clamp(32px,6vw,56px)",fontWeight:800,lineHeight:1.05,letterSpacing:"-0.04em",marginBottom:16}}>Perspectives on building, investing, and the Australian startup ecosystem.</h1></R></section>
     <section style={{maxWidth:1100,margin:"0 auto",padding:"0 32px 56px"}}><R d={0.12}><div onClick={()=>goArticle(featured.slug)} className="lift" style={{padding:40,borderRadius:20,border:`1px solid ${border}`,cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:40,flexWrap:"wrap"}}><div style={{flex:"1 1 400px"}}><span style={{fontSize:11,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:dim,display:"block",marginBottom:12}}>Featured</span><h2 style={{fontSize:28,fontWeight:700,letterSpacing:"-0.02em",lineHeight:1.2,marginBottom:12}}>{featured.title}</h2><p style={{fontSize:14,lineHeight:1.6,color:muted,marginBottom:16}}>{featured.summary}</p><span style={{fontSize:12,color:dim}}>{featured.date} · {featured.readTime}</span></div><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:12,fontWeight:600,padding:"4px 14px",borderRadius:100,border:`1px solid ${border}`}}>{featured.category}</span><ArrowUpRight size={16} color={dim}/></div></div></R></section>
-    <section style={{maxWidth:1100,margin:"0 auto",padding:"0 32px 40px"}}><R><div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{cats.map(c=>(<button key={c} onClick={()=>setFilter(c)} style={{padding:"8px 18px",borderRadius:100,fontSize:13,fontWeight:600,background:filter===c?black:"transparent",color:filter===c?white:muted,border:`1px solid ${filter===c?black:border}`,cursor:"pointer",fontFamily:"'Sora',sans-serif",transition:"all 0.2s"}}>{c}</button>))}</div></R></section>
+    <section style={{maxWidth:1100,margin:"0 auto",padding:"0 32px 40px"}}><R><div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{cats.map(c=>(<button key={c} onClick={()=>setFilter(c)} style={{padding:"8px 18px",borderRadius:100,fontSize:13,fontWeight:600,background:filter===c?black:"transparent",color:filter===c?white:muted,border:`1px solid ${filter===c?black:border}`,cursor:"pointer",fontFamily:"'Inter',sans-serif",transition:"all 0.2s"}}>{c}</button>))}</div></R></section>
     <section style={{maxWidth:1100,margin:"0 auto",padding:"0 32px 88px"}}><div className="articles-g" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16}}>{filtered.map((a,i)=>(<R key={a.slug} d={0.04*i}><div onClick={()=>goArticle(a.slug)} className="lift" style={{padding:24,borderRadius:16,border:`1px solid ${border}`,cursor:"pointer",height:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}><div><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}><span style={{fontSize:11,fontWeight:600,padding:"3px 10px",borderRadius:100,border:`1px solid ${border}`}}>{a.category}</span><ArrowUpRight size={14} color={dim}/></div><h3 style={{fontSize:16,fontWeight:700,lineHeight:1.3,letterSpacing:"-0.01em",marginBottom:10}}>{a.title}</h3><p style={{fontSize:13,lineHeight:1.55,color:muted,marginBottom:14}}>{a.summary}</p></div><span style={{fontSize:11,color:dim}}>{a.date} · {a.readTime}</span></div></R>))}</div></section>
     <SubFooter onBack={onBack}/></div>;
 }
 
 // ═══ LEGAL ═══
 function TermsPage({onBack}){useEffect(()=>{window.scrollTo(0,0)},[]);const s=[{t:"1. Acceptance of Terms",b:"By accessing locfortune.vc, you agree to these Terms of Use."},{t:"2. About Us",b:"Loc Fortune Capital Pty Ltd is a venture capital firm based in Sydney, Australia. Information on this website is for general purposes only."},{t:"3. No Financial Advice",b:"Nothing on this website should be construed as financial, investment, tax, or legal advice."},{t:"4. Intellectual Property",b:"All content is property of Loc Fortune Capital Pty Ltd."},{t:"5. Portfolio Information",b:"Portfolio company information may not reflect current status."},{t:"6. Third-Party Links",b:"We are not responsible for external websites."},{t:"7. Limitation of Liability",b:"To the fullest extent permitted by law, we shall not be liable for damages arising from use of this website."},{t:"8. Governing Law",b:"These Terms are governed by the laws of New South Wales, Australia."},{t:"9. Changes",b:"We may modify these Terms at any time."},{t:"10. Contact",b:"Contact us at jack@locfortune.com."}];
-  return <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/><section style={{maxWidth:720,margin:"0 auto",padding:"120px 32px 80px"}}><R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>Legal</p></R><R d={0.06}><h1 style={{fontSize:40,fontWeight:800,letterSpacing:"-0.03em",marginBottom:12}}>Terms of Use</h1></R><R d={0.1}><p style={{fontSize:13,color:dim,marginBottom:48}}>Last updated: April 2026</p></R>{s.map((x,i)=>(<R key={i} d={0.04*i}><div style={{marginBottom:32}}><h3 style={{fontSize:16,fontWeight:700,marginBottom:8}}>{x.t}</h3><p style={{fontSize:14,lineHeight:1.75,color:muted}}>{x.b}</p></div></R>))}</section><SubFooter onBack={onBack}/></div>;
+  return <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/><section style={{maxWidth:720,margin:"0 auto",padding:"120px 32px 80px"}}><R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>Legal</p></R><R d={0.06}><h1 style={{fontSize:40,fontWeight:800,letterSpacing:"-0.03em",marginBottom:12}}>Terms of Use</h1></R><R d={0.1}><p style={{fontSize:13,color:dim,marginBottom:48}}>Last updated: April 2026</p></R>{s.map((x,i)=>(<R key={i} d={0.04*i}><div style={{marginBottom:32}}><h3 style={{fontSize:16,fontWeight:700,marginBottom:8}}>{x.t}</h3><p style={{fontSize:14,lineHeight:1.75,color:muted}}>{x.b}</p></div></R>))}</section><SubFooter onBack={onBack}/></div>;
 }
 function PrivacyPage({onBack}){useEffect(()=>{window.scrollTo(0,0)},[]);const s=[{t:"1. Introduction",b:"Loc Fortune Capital Pty Ltd is committed to protecting your privacy. We comply with the Australian Privacy Principles."},{t:"2. Information We Collect",b:"Personal information you provide when contacting us, plus browsing data."},{t:"3. How We Use It",b:"To respond to enquiries, improve our website, and comply with legal obligations."},{t:"4. Sharing",b:"We do not sell or rent your personal information."},{t:"5. Cookies",b:"Our website may use cookies."},{t:"6. Security",b:"We implement reasonable security measures."},{t:"7. Your Rights",b:"Contact jack@locfortune.com to access, correct, or delete your information."},{t:"8. Changes",b:"We may update this policy."},{t:"9. Contact",b:"Contact us at jack@locfortune.com."}];
-  return <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/><section style={{maxWidth:720,margin:"0 auto",padding:"120px 32px 80px"}}><R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>Legal</p></R><R d={0.06}><h1 style={{fontSize:40,fontWeight:800,letterSpacing:"-0.03em",marginBottom:12}}>Privacy Policy</h1></R><R d={0.1}><p style={{fontSize:13,color:dim,marginBottom:48}}>Last updated: April 2026</p></R>{s.map((x,i)=>(<R key={i} d={0.04*i}><div style={{marginBottom:32}}><h3 style={{fontSize:16,fontWeight:700,marginBottom:8}}>{x.t}</h3><p style={{fontSize:14,lineHeight:1.75,color:muted}}>{x.b}</p></div></R>))}</section><SubFooter onBack={onBack}/></div>;
+  return <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh"}}><style>{GLOBAL_STYLES}</style><SubNav onBack={onBack}/><section style={{maxWidth:720,margin:"0 auto",padding:"120px 32px 80px"}}><R><p className="mono" style={{fontSize:11,color:dim,letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:20}}>Legal</p></R><R d={0.06}><h1 style={{fontSize:40,fontWeight:800,letterSpacing:"-0.03em",marginBottom:12}}>Privacy Policy</h1></R><R d={0.1}><p style={{fontSize:13,color:dim,marginBottom:48}}>Last updated: April 2026</p></R>{s.map((x,i)=>(<R key={i} d={0.04*i}><div style={{marginBottom:32}}><h3 style={{fontSize:16,fontWeight:700,marginBottom:8}}>{x.t}</h3><p style={{fontSize:14,lineHeight:1.75,color:muted}}>{x.b}</p></div></R>))}</section><SubFooter onBack={onBack}/></div>;
 }
 
 // ═══ MAIN ═══
@@ -263,11 +264,11 @@ export default function App(){
   const introLetters="LOC FORTUNE".split("");
 
   return(
-    <div style={{background:white,color:black,fontFamily:"'Sora',sans-serif",minHeight:"100vh",overflowX:"hidden",position:"relative"}}>
+    <div style={{background:white,color:black,fontFamily:"'Inter',sans-serif",minHeight:"100vh",overflowX:"hidden",position:"relative"}}>
 
       {/* Intro */}
       {showIntro&&<div style={{position:"fixed",inset:0,zIndex:9999,background:white,display:"flex",alignItems:"center",justifyContent:"center",opacity:introPhase===2?0:1,transform:introPhase===2?"translateY(-100vh)":"translateY(0)",transition:introPhase===2?"opacity 0.8s cubic-bezier(0.76,0,0.24,1), transform 0.8s cubic-bezier(0.76,0,0.24,1)":"none"}}>
-        <style>{`@keyframes letterDrop{0%{opacity:0;transform:translateY(-80px) rotate(-8deg)}60%{opacity:1;transform:translateY(8px) rotate(1deg)}80%{transform:translateY(-3px) rotate(-0.5deg)}100%{opacity:1;transform:translateY(0) rotate(0deg)}}.intro-letter{display:inline-block;opacity:0;animation:letterDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-0.04em;color:${black}}`}</style>
+        <style>{`@keyframes letterDrop{0%{opacity:0;transform:translateY(-80px) rotate(-8deg)}60%{opacity:1;transform:translateY(8px) rotate(1deg)}80%{transform:translateY(-3px) rotate(-0.5deg)}100%{opacity:1;transform:translateY(0) rotate(0deg)}}.intro-letter{display:inline-block;opacity:0;animation:letterDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-0.04em;color:${black}}`}</style>
         <div style={{textAlign:"center"}}><div style={{fontSize:"clamp(48px,12vw,120px)",lineHeight:1}}>{introLetters.map((l,i)=>(<span key={i} className="intro-letter" style={{animationDelay:`${0.08*i}s`,marginRight:l===" "?"0.25em":"0.01em"}}>{l===" "?"\u00A0":l}</span>))}</div></div>
       </div>}
 
@@ -282,11 +283,11 @@ export default function App(){
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(255,255,255,0.92)":"transparent",backdropFilter:scrolled?"blur(16px)":"none",borderBottom:scrolled?`1px solid ${border}`:"1px solid transparent",transition:"all 0.35s ease"}}><div style={{maxWidth:1100,margin:"0 auto",padding:"14px 32px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
         <a href="/" onClick={e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'','/');}} style={{fontSize:28,fontWeight:800,letterSpacing:"-0.06em",lineHeight:1,cursor:"pointer"}}>L</a>
         <div className="desk" style={{display:"flex",alignItems:"center",gap:28}}>
-          <button onClick={()=>go("about")} className="uline" style={{fontSize:13,fontWeight:500,letterSpacing:"0.01em",background:"none",border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif",padding:0}}>About</button>
+          <button onClick={()=>go("about")} className="uline" style={{fontSize:13,fontWeight:500,letterSpacing:"0.01em",background:"none",border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0}}>About</button>
           <a href="#portfolio" className="uline" style={{fontSize:13,fontWeight:500,letterSpacing:"0.01em"}}>Portfolio</a>
           <a href="#thesis" className="uline" style={{fontSize:13,fontWeight:500,letterSpacing:"0.01em"}}>Thesis</a>
-          <button onClick={()=>go("insights")} className="uline" style={{fontSize:13,fontWeight:500,letterSpacing:"0.01em",background:"none",border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif",padding:0}}>Insights</button>
-          <button onClick={()=>go("pitch")} style={{padding:"9px 22px",borderRadius:100,fontSize:13,fontWeight:600,background:black,color:white,display:"inline-flex",alignItems:"center",gap:6,border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif"}}>Pitch to us</button>
+          <button onClick={()=>go("insights")} className="uline" style={{fontSize:13,fontWeight:500,letterSpacing:"0.01em",background:"none",border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0}}>Insights</button>
+          <button onClick={()=>go("pitch")} style={{padding:"9px 22px",borderRadius:100,fontSize:13,fontWeight:600,background:black,color:white,display:"inline-flex",alignItems:"center",gap:6,border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Pitch to us</button>
         </div>
         <button className="mob-show" onClick={()=>setMenuOpen(true)} style={{display:"none",background:"none",border:"none",cursor:"pointer"}}><Menu size={20}/></button>
       </div></nav>
@@ -298,7 +299,7 @@ export default function App(){
         <R d={0.22}><p style={{fontSize:17,lineHeight:1.7,color:muted,maxWidth:500}}>We back founders before the world sees what they're capable of — and stay with them until it does.</p></R>
         <R d={0.3}><div style={{display:"flex",gap:10,marginTop:32}}>
           <a href="#portfolio" style={{padding:"13px 28px",borderRadius:100,fontSize:14,fontWeight:600,background:black,color:white,display:"inline-flex",alignItems:"center",gap:7}}>View portfolio <ArrowRight size={15}/></a>
-          <button onClick={()=>go("about")} style={{padding:"13px 28px",borderRadius:100,fontSize:14,fontWeight:600,border:`1.5px solid ${border}`,display:"inline-flex",alignItems:"center",gap:7,background:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif"}}>About us</button>
+          <button onClick={()=>go("about")} style={{padding:"13px 28px",borderRadius:100,fontSize:14,fontWeight:600,border:`1.5px solid ${border}`,display:"inline-flex",alignItems:"center",gap:7,background:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>About us</button>
         </div></R>
       </section>
 
@@ -377,7 +378,7 @@ export default function App(){
             <R><h2 className="cta-h serif" style={{fontSize:"clamp(32px,5.5vw,56px)",fontWeight:400,fontStyle:"italic",letterSpacing:"-0.02em",lineHeight:1.08,marginBottom:16}}>Let's build something<br/>extraordinary.</h2></R>
           </Parallax>
           <R d={0.08}><p style={{fontSize:16,color:"#A1A1AA",maxWidth:400,margin:"0 auto 32px",lineHeight:1.6}}>Whether you're a founder or an investor — we'd love to hear from you.</p></R>
-          <R d={0.14}><button onClick={()=>go("pitch")} style={{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:100,fontSize:14,fontWeight:600,background:white,color:black,border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif"}}>Pitch to us <ArrowRight size={15}/></button></R>
+          <R d={0.14}><button onClick={()=>go("pitch")} style={{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:100,fontSize:14,fontWeight:600,background:white,color:black,border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Pitch to us <ArrowRight size={15}/></button></R>
         </div>
       </section>
 
@@ -386,17 +387,17 @@ export default function App(){
         <div className="ft-g" style={{maxWidth:1100,margin:"0 auto",padding:"44px 32px 28px",display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:36}}>
           <div><span style={{fontSize:24,fontWeight:800,letterSpacing:"-0.06em",display:"block"}}>L</span></div>
           <div><p className="mono" style={{fontSize:10,letterSpacing:"0.12em",textTransform:"uppercase",color:dim,marginBottom:12}}>Company</p>
-            <button onClick={()=>go("about")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif",padding:0,textAlign:"left"}}>About</button>
+            <button onClick={()=>go("about")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textAlign:"left"}}>About</button>
             <a href="#portfolio" className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10}}>Portfolio</a>
             <a href="#thesis" className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10}}>Thesis</a>
-            <button onClick={()=>go("insights")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif",padding:0,textAlign:"left"}}>Insights</button>
+            <button onClick={()=>go("insights")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textAlign:"left"}}>Insights</button>
           </div>
           <div><p className="mono" style={{fontSize:10,letterSpacing:"0.12em",textTransform:"uppercase",color:dim,marginBottom:12}}>Social</p>
             <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10}}>LinkedIn</a>
           </div>
           <div><p className="mono" style={{fontSize:10,letterSpacing:"0.12em",textTransform:"uppercase",color:dim,marginBottom:12}}>Legal</p>
-            <button onClick={()=>go("terms")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif",padding:0,textAlign:"left"}}>Terms of Use</button>
-            <button onClick={()=>go("privacy")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Sora',sans-serif",padding:0,textAlign:"left"}}>Privacy Policy</button>
+            <button onClick={()=>go("terms")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textAlign:"left"}}>Terms of Use</button>
+            <button onClick={()=>go("privacy")} className="uline" style={{display:"block",fontSize:13,color:muted,marginBottom:10,background:"none",border:"none",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textAlign:"left"}}>Privacy Policy</button>
           </div>
         </div>
         <div style={{maxWidth:1100,margin:"0 auto",padding:"0 32px 20px"}}><div style={{borderTop:`1px solid ${border}`,paddingTop:16,display:"flex",justifyContent:"space-between",alignItems:"center"}}><p style={{fontSize:11,color:dim}}>© 2026 Loc Fortune Capital Pty Ltd</p><span style={{fontSize:11,color:dim}}>All rights reserved.</span></div></div>
